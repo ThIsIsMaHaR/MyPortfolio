@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Github, 
@@ -6,40 +7,25 @@ import {
   Mail, 
   Linkedin, 
   Trophy, 
-  Briefcase, 
   GraduationCap, 
-  Calendar, 
   Award,
   FileText,
   Sun,
-  Moon 
+  Moon,
+  Send,
+  Terminal,
+  Cpu,
+  Activity,
+  Zap
 } from 'lucide-react';
 
 // --- DATA ---
 const TITLES = ["SOFTWARE DEVELOPER", "WEB DEVELOPER", "MERN STACK", "CLOUD ENTHUSIAST"];
 
 const TIMELINE = [
-  {
-    type: "EDUCATION",
-    title: "High School (10th)",
-    org: "St.Francis Senior Secondary School, Tanakpur, Uttarakhand",
-    date: "2018 — 2019",
-    desc: "Science Stream."
-  },
-  {
-    type: "EDUCATION",
-    title: "Higher Secondary (12th)",
-    org: "St.Francis Senior Secondary School, Tanakpur, Uttarakhand",
-    date: "2020 — 2021",
-    desc: "PCM with Computer Science."
-  },
-  {
-    type: "EDUCATION",
-    title: "B.Tech Graduation",
-    org: "UTTARAKHAND TECHNICAL UNIVERSITY",
-    date: "2021 — 2025",
-    desc: "Specialised in Computer Science and Engineering."
-  }
+  { type: "EDUCATION", title: "High School (10th)", org: "St.Francis Senior Secondary School, Tanakpur, Uttarakhand", date: "2018 — 2019", desc: "Science Stream." },
+  { type: "EDUCATION", title: "Higher Secondary (12th)", org: "St.Francis Senior Secondary School, Tanakpur, Uttarakhand", date: "2020 — 2021", desc: "PCM with Computer Science." },
+  { type: "EDUCATION", title: "B.Tech Graduation", org: "UTTARAKHAND TECHNICAL UNIVERSITY", date: "2021 — 2025", desc: "Specialised in Computer Science and Engineering." }
 ];
 
 const CERTIFICATES = [
@@ -49,27 +35,9 @@ const CERTIFICATES = [
 ];
 
 const PROJECTS = [
-  {
-    title: "PAGE TURNER",
-    description: "It is a platform where different e-book and Web Novel writers can upload and publish their work Chapter by chapter and readers can read the work of their interest.",
-    tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"],
-    github: "https://github.com/ThIsIsMaHaR", 
-    link: "#",
-  },
-  {
-    title: "TEXTORA",
-    description: "It is an blogging Platform where you can wite your Blogs and Daily Updates.",
-    tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"],
-    github: "https://github.com/ThIsIsMaHaR", 
-    link: "#",
-  },
-  {
-    title: "ZAPCHAT",
-    description: "It is a Real Time Chat Web Application.",
-    tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"],
-    github: "https://github.com/ThIsIsMaHaR", 
-    link: "#",
-  }
+  { title: "PAGE TURNER", description: "It is a platform where different e-book and Web Novel writers can upload and publish their work Chapter by chapter and readers can read the work of their interest.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
+  { title: "TEXTORA", description: "It is an blogging Platform where you can wite your Blogs and Daily Updates.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
+  { title: "ZAPCHAT", description: "It is a Real Time Chat Web Application.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" }
 ];
 
 const TECH_STACK = [
@@ -98,20 +66,20 @@ const TypewriterText = ({ text, isDark }) => {
 };
 
 const Navbar = ({ isDark, setIsDark }) => (
-  <nav className={`fixed top-0 w-full z-50 backdrop-blur-md py-5 px-6 md:px-12 flex justify-between items-center border-b transition-all duration-300 ${isDark ? 'bg-[#0a192f]/90 border-white/5' : 'bg-white/90 border-black/5'}`}>
-    <div className={`font-bold text-2xl font-mono tracking-widest uppercase ${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'}`}>A.S.M</div>
-    <div className="hidden md:flex gap-10 items-center font-mono text-sm uppercase tracking-[0.2em]">
-      <a href="#about" className={`transition ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>ABOUT</a>
-      <a href="#experience" className={`transition ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>JOURNEY</a>
-      <a href="#credentials" className={`transition ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>CREDENTIALS</a>
-      <a href="#projects" className={`transition ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>PROJECTS</a>
-      <a href="#contact" className={`transition ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>CONTACT</a>
-      <motion.button onClick={() => setIsDark(!isDark)} className={`relative w-12 h-6 rounded-full p-1 flex items-center transition-colors ${isDark ? 'bg-slate-700' : 'bg-slate-200'}`}>
-        <motion.div layout className={`w-4 h-4 rounded-full flex items-center justify-center ${isDark ? 'bg-[#64ffda]' : 'bg-[#0a192f]'}`} animate={{ x: isDark ? 24 : 0 }}>
-          {isDark ? <Moon size={10} className="text-[#0a192f]" /> : <Sun size={10} className="text-white" />}
+  <nav className={`fixed top-0 w-full z-50 backdrop-blur-md py-5 px-4 md:px-8 lg:px-12 flex justify-between items-center border-b transition-all duration-300 ${isDark ? 'bg-[#0a192f]/90 border-white/5' : 'bg-white/90 border-black/5'}`}>
+    <div className={`font-bold text-xl lg:text-2xl font-mono tracking-widest uppercase shrink-0 ${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'}`}>A.S.M</div>
+    <div className="hidden md:flex flex-1 justify-end items-center gap-3 lg:gap-10 font-mono text-[11px] lg:text-sm uppercase tracking-tighter lg:tracking-[0.2em]">
+      <a href="#about" className={`transition shrink-0 ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>ABOUT</a>
+      <a href="#experience" className={`transition shrink-0 ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>JOURNEY</a>
+      <a href="#credentials" className={`transition shrink-0 ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>CREDENTIALS</a>
+      <a href="#projects" className={`transition shrink-0 ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>PROJECTS</a>
+      <a href="#contact" className={`transition shrink-0 ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>CONTACT</a>
+      <motion.button onClick={() => setIsDark(!isDark)} className={`relative w-10 lg:w-12 h-5 lg:h-6 rounded-full p-1 flex items-center transition-colors shrink-0 ${isDark ? 'bg-slate-700' : 'bg-slate-200'}`}>
+        <motion.div layout className={`w-3 lg:w-4 h-3 lg:h-4 rounded-full flex items-center justify-center ${isDark ? 'bg-[#64ffda]' : 'bg-[#0a192f]'}`} animate={{ x: isDark ? 20 : 0 }}>
+          {isDark ? <Moon size={8} className="text-[#0a192f]" /> : <Sun size={8} className="text-white" />}
         </motion.div>
       </motion.button>
-      <a href="/myCV.pdf" download className={`border-2 px-6 py-2 rounded-sm transition tracking-widest font-bold ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0a192f]' : 'border-[#0a192f] text-[#0a192f] hover:bg-[#0a192f] hover:text-white'}`}>RESUME</a>
+      <a href="/myCV.pdf" download className={`border-2 px-3 lg:px-6 py-1.5 lg:py-2 rounded-sm transition tracking-widest font-bold shrink-0 ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0a192f]' : 'border-[#0a192f] text-[#0a192f] hover:bg-[#0a192f] hover:text-white'}`}>RESUME</a>
     </div>
   </nav>
 );
@@ -119,18 +87,38 @@ const Navbar = ({ isDark, setIsDark }) => (
 const App = () => {
   const [index, setIndex] = useState(0);
   const [isDark, setIsDark] = useState(true);
+  const form = useRef();
 
   useEffect(() => {
     const interval = setInterval(() => setIndex((prev) => (prev + 1) % TITLES.length), 4000);
     return () => clearInterval(interval);
   }, []);
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+    
+    // UPDATED with your Service ID, New Template ID, and Public Key
+    emailjs.sendForm(
+        'service_2k7grl7', 
+        'template_mggip1l', 
+        form.current, 
+        'pYfU8c0aPqtTrq8rS'
+    )
+      .then(() => {
+          alert("SIGNAL DISPATCHED: CONNECTION SUCCESSFUL.");
+          e.target.reset();
+      }, (error) => {
+          alert("COMMUNICATION ERROR: " + error.text);
+      });
+  };
+
   const themeClasses = {
     bg: isDark ? 'bg-[#0b0e14]' : 'bg-[#f8fafc]',
     text: isDark ? 'text-slate-300' : 'text-slate-700',
     heading: isDark ? 'text-white' : 'text-[#0a192f]',
     card: isDark ? 'bg-[#112240]' : 'bg-white',
-    border: isDark ? 'border-white/10' : 'border-black/10'
+    border: isDark ? 'border-white/10' : 'border-black/10',
+    input: isDark ? 'bg-[#0a192f]/50 border-white/10 text-[#64ffda] focus:border-[#64ffda] focus:bg-[#0a192f]' : 'bg-slate-50 border-black/10 text-[#0a192f] focus:border-blue-600 focus:bg-white'
   };
 
   return (
@@ -138,17 +126,12 @@ const App = () => {
       <Navbar isDark={isDark} setIsDark={setIsDark} />
       
       <main className="max-w-6xl mx-auto px-6">
-        {/* HERO - UNIFORM NAME SIZE */}
+        {/* HERO */}
         <section className="h-screen flex flex-col justify-center">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className={`font-mono text-sm tracking-[0.4em] block mb-4 ${isDark ? 'text-[#64ffda]' : 'text-blue-600'}`}>
-              HELLO, I AM
-            </span>
-            <h1 className={`text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6 ${themeClasses.heading}`}>
-              Abhishek Singh Mahar.
-            </h1>
+            <span className={`font-mono text-sm tracking-[0.4em] block mb-4 ${isDark ? 'text-[#64ffda]' : 'text-blue-600'}`}>HELLO, I AM</span>
+            <h1 className={`text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6 ${themeClasses.heading}`}>Abhishek Singh Mahar.</h1>
           </motion.div>
-          
           <div className="h-12 md:h-16 flex items-center mb-10 text-xl md:text-3xl font-mono uppercase">
             <AnimatePresence mode="wait"><div key={TITLES[index]}><TypewriterText text={`${TITLES[index]}`} isDark={isDark} /></div></AnimatePresence>
           </div>
@@ -242,7 +225,7 @@ const App = () => {
         </section>
 
         {/* 05. PROJECTS */}
-        <section id="projects" className="py-24 text-left">
+        <section id="projects" className="py-24 text-left border-b border-white/5 pb-20">
           <div className={`flex items-center gap-4 mb-16 border-b pb-6 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda] border-white/10' : 'text-[#0a192f] border-black/10'}`}>
             <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>05.</span> SELECTED_WORKS
           </div>
@@ -264,24 +247,87 @@ const App = () => {
             ))}
           </div>
         </section>
+
+        {/* 06. CONTACT TERMINAL - HUD DESIGN */}
+        <section id="contact" className="py-32 text-left">
+          <div className={`flex items-center gap-4 mb-20 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'}`}>
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>06.</span> CONTACT_TERMINAL
+          </div>
+          
+          <div className="grid lg:grid-cols-5 gap-16 items-start">
+            <div className="lg:col-span-2 space-y-12">
+              <div className="relative p-8 border border-dashed border-white/20 bg-white/2 rounded-sm">
+                <div className="absolute -top-3 -left-3 p-2 bg-[#0b0e14] border border-white/10">
+                  <Terminal size={16} className={isDark ? 'text-[#64ffda]' : 'text-blue-600'} />
+                </div>
+                <h3 className={`${themeClasses.heading} text-4xl font-black tracking-tighter mb-6`}>INITIATE <br/> CONNECTION.</h3>
+                <p className="font-mono text-xs tracking-widest opacity-40 uppercase mb-10">Available for freelance and full-time positions.</p>
+                
+                <div className="space-y-4">
+                  {[
+                    { icon: Linkedin, url: "https://www.linkedin.com/in/itsmahar/", text: "LINKEDIN / itsmahar" },
+                    { icon: Github, url: "https://github.com/ThIsIsMaHaR", text: "GITHUB / ThIsIsMaHaR" },
+                    { icon: Mail, url: "mailto:abhishek.s.mahar@gmail.com", text: "EMAIL / abhishek.s.mahar" }
+                  ].map((social, i) => (
+                    <a key={i} href={social.url} target="_blank" rel="noreferrer" 
+                      className={`flex items-center gap-4 p-4 border border-transparent hover:border-white/10 hover:bg-white/2 transition-all group`}>
+                      <social.icon size={18} className={isDark ? 'group-hover:text-[#64ffda]' : 'group-hover:text-blue-600'} />
+                      <span className="font-mono text-[10px] tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">{social.text}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-3">
+              <div className={`relative ${isDark ? 'bg-[#112240]/30 border-white/10' : 'bg-white border-black/10'} border-2 rounded-sm overflow-hidden`}>
+                <div className="h-1 w-full bg-linear-to-r from-transparent via-[#64ffda] to-transparent opacity-50"></div>
+                
+                <form ref={form} onSubmit={sendEmail} className="p-8 md:p-12 space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="relative group">
+                      <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Name</label>
+                      <input type="text" name="user_name" required placeholder="Your-Name" className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
+                    </div>
+                    <div className="relative group">
+                      <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Email</label>
+                      <input type="email" name="user_email" required placeholder="Your-email" className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
+                    </div>
+                  </div>
+                  
+                  <div className="relative group">
+                    <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Subject</label>
+                    <input type="text" name="subject" required placeholder="Collaboration Request" className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
+                  </div>
+
+                  <div className="relative group">
+                    <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Message_Payload</label>
+                    <textarea name="message" required rows="5" placeholder="System details and query..." className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all resize-none ${themeClasses.input}`}></textarea>
+                  </div>
+                  
+                  <button type="submit" className={`w-full flex items-center justify-center gap-4 py-6 border-2 font-black transition-all uppercase text-xs tracking-[0.6em] group ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-black text-black hover:bg-black hover:text-white'}`}>
+                    EXECUTE_TRANSMISSION <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </button>
+                </form>
+
+                <div className="px-12 pb-8 flex justify-between items-center opacity-20">
+                  <div className="flex gap-2">
+                    <div className="w-1.5 h-1.5 bg-current rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-current rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-current rounded-full"></div>
+                  </div>
+                  <div className="font-mono text-[8px] tracking-[0.3em]">SECURE_ENCRYPTION_V2.0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer id="contact" className={`py-32 text-center border-t transition-all ${isDark ? 'bg-[#0a192f]/30 border-white/5' : 'bg-slate-50 border-black/5'}`}>
-        <h3 className={`${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'} text-xs font-mono mb-12 uppercase tracking-[0.6em]`}>CONNECT_NOW</h3>
-        <div className="flex justify-center gap-10 mb-20">
-           <a href="https://www.linkedin.com/in/itsmahar/" target="_blank" rel="noreferrer" className={`w-16 h-16 border flex items-center justify-center transition-all ${isDark ? 'border-[#64ffda]/40 text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-[#0a192f]/40 text-[#0a192f] hover:bg-[#0a192f] hover:text-white'}`}>
-             <Linkedin size={28} />
-           </a>
-           <a href="https://github.com/ThIsIsMaHaR" target="_blank" rel="noreferrer" className={`w-16 h-16 border flex items-center justify-center transition-all ${isDark ? 'border-[#64ffda]/40 text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-[#0a192f]/40 text-[#0a192f] hover:bg-[#0a192f] hover:text-white'}`}>
-             <Github size={28} />
-           </a>
-           <a href="mailto:abhishek.s.mahar@gmail.com" className={`w-16 h-16 border flex items-center justify-center transition-all ${isDark ? 'border-[#64ffda]/40 text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-[#0a192f]/40 text-[#0a192f] hover:bg-[#0a192f] hover:text-white'}`}>
-             <Mail size={28} />
-           </a>
-        </div>
+      <footer className={`py-20 text-center border-t transition-all ${isDark ? 'bg-[#0a192f]/30 border-white/5' : 'bg-slate-50 border-black/5'}`}>
         <div className="space-y-4 font-mono uppercase">
           <p className="text-[9px] text-slate-500 tracking-[0.8em]">BUILT_WITH_PRECISION</p>
-          <p className={`${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'} text-xs font-bold tracking-[0.4em]`}>ABHISHEK SINGH MAHAR </p>
+          <p className={`${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'} text-xs font-bold tracking-[0.4em]`}>ABHISHEK SINGH MAHAR</p>
         </div>
       </footer>
     </div>
