@@ -96,14 +96,7 @@ const App = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    
-    // UPDATED with your Service ID, New Template ID, and Public Key
-    emailjs.sendForm(
-        'service_2k7grl7', 
-        'template_mggip1l', 
-        form.current, 
-        'pYfU8c0aPqtTrq8rS'
-    )
+    emailjs.sendForm('service_2k7grl7', 'template_mggip1l', form.current, 'pYfU8c0aPqtTrq8rS')
       .then(() => {
           alert("SIGNAL DISPATCHED: CONNECTION SUCCESSFUL.");
           e.target.reset();
@@ -118,7 +111,8 @@ const App = () => {
     heading: isDark ? 'text-white' : 'text-[#0a192f]',
     card: isDark ? 'bg-[#112240]' : 'bg-white',
     border: isDark ? 'border-white/10' : 'border-black/10',
-    input: isDark ? 'bg-[#0a192f]/50 border-white/10 text-[#64ffda] focus:border-[#64ffda] focus:bg-[#0a192f]' : 'bg-slate-50 border-black/10 text-[#0a192f] focus:border-blue-600 focus:bg-white'
+    // SLIMMER BOXES: Adjusted padding to py-3 from py-5
+    input: isDark ? 'bg-[#0a192f]/50 border-white/10 text-[#64ffda] focus:border-[#64ffda] focus:bg-[#0a192f] px-6 py-3' : 'bg-slate-50 border-black/10 text-[#0a192f] focus:border-blue-600 focus:bg-white px-6 py-3'
   };
 
   return (
@@ -126,7 +120,7 @@ const App = () => {
       <Navbar isDark={isDark} setIsDark={setIsDark} />
       
       <main className="max-w-6xl mx-auto px-6">
-        {/* HERO */}
+        {/* HERO SECTION */}
         <section className="h-screen flex flex-col justify-center">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <span className={`font-mono text-sm tracking-[0.4em] block mb-4 ${isDark ? 'text-[#64ffda]' : 'text-blue-600'}`}>HELLO, I AM</span>
@@ -162,7 +156,7 @@ const App = () => {
         {/* 02. TECH */}
         <section id="tech" className="py-24 text-left">
           <div className={`flex items-center gap-4 mb-16 border-b pb-6 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda] border-white/10' : 'text-[#0a192f] border-black/10'}`}>
-            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>02.</span> TECH_ARSENAL.EXE
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>02.</span> TECH_ARSENAL
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-16 justify-items-center">
             {TECH_STACK.map((tech) => (
@@ -181,7 +175,7 @@ const App = () => {
         {/* 03. JOURNEY */}
         <section id="experience" className="py-24 text-left">
           <div className={`flex items-center gap-4 mb-16 border-b pb-6 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda] border-white/10' : 'text-[#0a192f] border-black/10'}`}>
-            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>03.</span> JOURNEY_LOG
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>03.</span> MY_JOURNEY
           </div>
           <div className="space-y-12">
             {TIMELINE.map((item, i) => (
@@ -203,7 +197,7 @@ const App = () => {
         {/* 04. CREDENTIALS */}
         <section id="credentials" className="py-24 text-left">
           <div className={`flex items-center gap-4 mb-16 border-b pb-6 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda] border-white/10' : 'text-[#0a192f] border-black/10'}`}>
-            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>04.</span> CREDENTIALS_VAULT
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>04.</span> CREDENTIALS
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {CERTIFICATES.map((cert, i) => (
@@ -248,7 +242,7 @@ const App = () => {
           </div>
         </section>
 
-        {/* 06. CONTACT TERMINAL - HUD DESIGN */}
+        {/* 06. CONTACT TERMINAL */}
         <section id="contact" className="py-32 text-left">
           <div className={`flex items-center gap-4 mb-20 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'}`}>
             <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>06.</span> CONTACT_TERMINAL
@@ -283,26 +277,28 @@ const App = () => {
               <div className={`relative ${isDark ? 'bg-[#112240]/30 border-white/10' : 'bg-white border-black/10'} border-2 rounded-sm overflow-hidden`}>
                 <div className="h-1 w-full bg-linear-to-r from-transparent via-[#64ffda] to-transparent opacity-50"></div>
                 
+                {/* Form padding reduced for a nicer fit */}
                 <form ref={form} onSubmit={sendEmail} className="p-8 md:p-12 space-y-8">
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="relative group">
                       <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Name</label>
-                      <input type="text" name="user_name" required placeholder="Your-Name" className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
+                      <input type="text" name="user_name" required placeholder="Your-Name" className={`w-full font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
                     </div>
                     <div className="relative group">
                       <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Email</label>
-                      <input type="email" name="user_email" required placeholder="Your-email" className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
+                      <input type="email" name="user_email" required placeholder="Your-email" className={`w-full font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
                     </div>
                   </div>
                   
                   <div className="relative group">
                     <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Subject</label>
-                    <input type="text" name="subject" required placeholder="Collaboration Request" className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
+                    <input type="text" name="subject" required placeholder="Collaboration Request" className={`w-full font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
                   </div>
 
                   <div className="relative group">
                     <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Message_Payload</label>
-                    <textarea name="message" required rows="5" placeholder="System details and query..." className={`w-full px-6 py-5 font-mono text-xs border rounded-none outline-none transition-all resize-none ${themeClasses.input}`}></textarea>
+                    {/* REDUCED rows to 3 for a small message box */}
+                    <textarea name="message" required rows="3" placeholder="System details and query..." className={`w-full font-mono text-xs border rounded-none outline-none transition-all resize-none ${themeClasses.input}`}></textarea>
                   </div>
                   
                   <button type="submit" className={`w-full flex items-center justify-center gap-4 py-6 border-2 font-black transition-all uppercase text-xs tracking-[0.6em] group ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-black text-black hover:bg-black hover:text-white'}`}>
