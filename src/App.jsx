@@ -162,7 +162,7 @@ const App = () => {
         {/* 02. TECH */}
         <section id="tech" className="py-24 text-left">
           <div className={`flex items-center gap-4 mb-16 border-b pb-6 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda] border-white/10' : 'text-[#0a192f] border-black/10'}`}>
-            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>02.</span> TECH_ARSENAL.EXE
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>02.</span> TECH_ARSENAL
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-16 justify-items-center">
             {TECH_STACK.map((tech) => (
@@ -203,7 +203,7 @@ const App = () => {
         {/* 04. CREDENTIALS */}
         <section id="credentials" className="py-24 text-left">
           <div className={`flex items-center gap-4 mb-16 border-b pb-6 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda] border-white/10' : 'text-[#0a192f] border-black/10'}`}>
-            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>04.</span> CREDENTIALS_VAULT
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>04.</span> CREDENTIALS
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {CERTIFICATES.map((cert, i) => (
