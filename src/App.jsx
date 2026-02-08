@@ -251,7 +251,7 @@ const App = () => {
         {/* 06. CONTACT TERMINAL - HUD DESIGN */}
         <section id="contact" className="py-32 text-left">
           <div className={`flex items-center gap-4 mb-20 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'}`}>
-            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>06.</span> CONTACT_TERMINAL
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>06.</span> MY_CONTACT
           </div>
           
           <div className="grid lg:grid-cols-5 gap-16 items-start">
