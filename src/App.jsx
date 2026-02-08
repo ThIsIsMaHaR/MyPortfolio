@@ -295,7 +295,7 @@ const App = () => {
                     <textarea name="message" required rows="3" placeholder="System details..." className={`w-full font-mono text-xs border rounded-none outline-none transition-all resize-none ${themeClasses.input}`}></textarea>
                   </div>
                   
-                  <button type="submit" className={`w-full max-w-[240px] flex items-center justify-center gap-4 py-4 border-2 font-black transition-all uppercase text-[10px] tracking-[0.6em] group ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-black text-black hover:bg-black hover:text-white'}`}>
+                  <button type="submit" className={`w-full max-w-60 flex items-center justify-center gap-4 py-4 border-2 font-black transition-all uppercase text-[10px] tracking-[0.6em] group ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-black text-black hover:bg-black hover:text-white'}`}>
                     TRANSMIT <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </button>
                 </form>
