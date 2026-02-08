@@ -134,7 +134,7 @@ const App = () => {
         {/* 01. ABOUT */}
         <section id="about" className="py-24">
           <div className={`flex items-center gap-4 mb-16 border-b pb-6 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda] border-white/10' : 'text-[#0a192f] border-black/10'}`}>
-            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>01.</span> PROFILE_SUMMARY
+            <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>01.</span> MY_PROFILE
           </div>
           <div className="grid md:grid-cols-5 gap-12 items-start">
             <div className={`md:col-span-3 space-y-6 text-lg leading-relaxed uppercase tracking-wider font-light text-left ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
