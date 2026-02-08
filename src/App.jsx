@@ -19,7 +19,7 @@ import {
   Zap
 } from 'lucide-react';
 
-// --- DATA ---
+// --- DATA (UNCHANGED) ---
 const TITLES = ["SOFTWARE DEVELOPER", "WEB DEVELOPER", "MERN STACK", "CLOUD ENTHUSIAST"];
 
 const TIMELINE = [
@@ -75,7 +75,7 @@ const Navbar = ({ isDark, setIsDark }) => (
       <a href="#projects" className={`transition shrink-0 ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>PROJECTS</a>
       <a href="#contact" className={`transition shrink-0 ${isDark ? 'hover:text-[#64ffda]' : 'hover:text-blue-600'}`}>CONTACT</a>
       <motion.button onClick={() => setIsDark(!isDark)} className={`relative w-10 lg:w-12 h-5 lg:h-6 rounded-full p-1 flex items-center transition-colors shrink-0 ${isDark ? 'bg-slate-700' : 'bg-slate-200'}`}>
-        <motion.div layout className={`w-3 lg:w-4 h-3 lg:h-4 rounded-full flex items-center justify-center ${isDark ? 'bg-[#64ffda]' : 'bg-[#0a192f]'}`} animate={{ x: isDark ? 20 : 0 }}>
+        <motion.div layout className={`w-3 lg:w-4 h-3 lg:h-4 rounded-full flex items-center justify-center ${isDark ? 'bg-[#64ffda]' : 'bg-[#0a192f]'}`} animate={{ x: isDark ? 24 : 0 }}>
           {isDark ? <Moon size={8} className="text-[#0a192f]" /> : <Sun size={8} className="text-white" />}
         </motion.div>
       </motion.button>
@@ -111,7 +111,6 @@ const App = () => {
     heading: isDark ? 'text-white' : 'text-[#0a192f]',
     card: isDark ? 'bg-[#112240]' : 'bg-white',
     border: isDark ? 'border-white/10' : 'border-black/10',
-    // SLIMMER BOXES: Adjusted padding to py-3 from py-5
     input: isDark ? 'bg-[#0a192f]/50 border-white/10 text-[#64ffda] focus:border-[#64ffda] focus:bg-[#0a192f] px-6 py-3' : 'bg-slate-50 border-black/10 text-[#0a192f] focus:border-blue-600 focus:bg-white px-6 py-3'
   };
 
@@ -242,18 +241,16 @@ const App = () => {
           </div>
         </section>
 
-        {/* 06. CONTACT TERMINAL */}
+        {/* 06. CONTACT MODULE - FIXED SLIM WIDTHS */}
         <section id="contact" className="py-32 text-left">
           <div className={`flex items-center gap-4 mb-20 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'}`}>
             <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>06.</span> MY_CONTACT
           </div>
           
           <div className="grid lg:grid-cols-5 gap-16 items-start">
-            <div className="lg:col-span-2 space-y-12">
-              <div className="relative p-8 border border-dashed border-white/20 bg-white/2 rounded-sm">
-                <div className="absolute -top-3 -left-3 p-2 bg-[#0b0e14] border border-white/10">
-                  <Terminal size={16} className={isDark ? 'text-[#64ffda]' : 'text-blue-600'} />
-                </div>
+            {/* Left Column: Social HUD (Slimmed down with max-width) */}
+            <div className="lg:col-span-2 space-y-12 max-w-xs">
+              <div className="relative">
                 <h3 className={`${themeClasses.heading} text-4xl font-black tracking-tighter mb-6`}>INITIATE <br/> CONNECTION.</h3>
                 <p className="font-mono text-xs tracking-widest opacity-40 uppercase mb-10">Available for freelance and full-time positions.</p>
                 
@@ -264,7 +261,7 @@ const App = () => {
                     { icon: Mail, url: "mailto:abhishek.s.mahar@gmail.com", text: "EMAIL / abhishek.s.mahar" }
                   ].map((social, i) => (
                     <a key={i} href={social.url} target="_blank" rel="noreferrer" 
-                      className={`flex items-center gap-4 p-4 border border-transparent hover:border-white/10 hover:bg-white/2 transition-all group`}>
+                      className={`flex items-center gap-4 p-4 border border-transparent hover:border-white/10 hover:bg-white/5 transition-all group rounded-sm`}>
                       <social.icon size={18} className={isDark ? 'group-hover:text-[#64ffda]' : 'group-hover:text-blue-600'} />
                       <span className="font-mono text-[10px] tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">{social.text}</span>
                     </a>
@@ -273,46 +270,43 @@ const App = () => {
               </div>
             </div>
 
+            {/* Right Column: Message Box (Slimmed down with max-width) */}
             <div className="lg:col-span-3">
-              <div className={`relative ${isDark ? 'bg-[#112240]/30 border-white/10' : 'bg-white border-black/10'} border-2 rounded-sm overflow-hidden`}>
-                <div className="h-1 w-full bg-linear-to-r from-transparent via-[#64ffda] to-transparent opacity-50"></div>
-                
-                {/* Form padding reduced for a nicer fit */}
-                <form ref={form} onSubmit={sendEmail} className="p-8 md:p-12 space-y-8">
-                  <div className="grid md:grid-cols-2 gap-8">
+              <div className="relative max-w-md">
+                <form ref={form} onSubmit={sendEmail} className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div className="relative group">
-                      <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Name</label>
+                      <label className="absolute -top-4 left-4 px-2 bg-[#0b0e14] font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Name</label>
                       <input type="text" name="user_name" required placeholder="Your-Name" className={`w-full font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
                     </div>
                     <div className="relative group">
-                      <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Email</label>
+                      <label className="absolute -top-4 left-4 px-2 bg-[#0b0e14] font-mono text-[9px] tracking-widest opacity-40 uppercase">Sender_Email</label>
                       <input type="email" name="user_email" required placeholder="Your-email" className={`w-full font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
                     </div>
                   </div>
                   
                   <div className="relative group">
-                    <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Subject</label>
+                    <label className="absolute -top-4 left-4 px-2 bg-[#0b0e14] font-mono text-[9px] tracking-widest opacity-40 uppercase">Subject</label>
                     <input type="text" name="subject" required placeholder="Collaboration Request" className={`w-full font-mono text-xs border rounded-none outline-none transition-all ${themeClasses.input}`} />
                   </div>
 
                   <div className="relative group">
-                    <label className="absolute -top-4 left-4 px-2 bg-inherit font-mono text-[9px] tracking-widest opacity-40 uppercase">Message_Payload</label>
-                    {/* REDUCED rows to 3 for a small message box */}
-                    <textarea name="message" required rows="3" placeholder="System details and query..." className={`w-full font-mono text-xs border rounded-none outline-none transition-all resize-none ${themeClasses.input}`}></textarea>
+                    <label className="absolute -top-4 left-4 px-2 bg-[#0b0e14] font-mono text-[9px] tracking-widest opacity-40 uppercase">Message_Payload</label>
+                    <textarea name="message" required rows="3" placeholder="System details..." className={`w-full font-mono text-xs border rounded-none outline-none transition-all resize-none ${themeClasses.input}`}></textarea>
                   </div>
                   
-                  <button type="submit" className={`w-full flex items-center justify-center gap-4 py-6 border-2 font-black transition-all uppercase text-xs tracking-[0.6em] group ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-black text-black hover:bg-black hover:text-white'}`}>
-                    EXECUTE_TRANSMISSION <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <button type="submit" className={`w-full max-w-[240px] flex items-center justify-center gap-4 py-4 border-2 font-black transition-all uppercase text-[10px] tracking-[0.6em] group ${isDark ? 'border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0b0e14]' : 'border-black text-black hover:bg-black hover:text-white'}`}>
+                    TRANSMIT <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </button>
                 </form>
 
-                <div className="px-12 pb-8 flex justify-between items-center opacity-20">
+                <div className="flex justify-between items-center opacity-20 mt-10 max-w-md">
                   <div className="flex gap-2">
-                    <div className="w-1.5 h-1.5 bg-current rounded-full"></div>
-                    <div className="w-1.5 h-1.5 bg-current rounded-full"></div>
-                    <div className="w-1.5 h-1.5 bg-current rounded-full"></div>
+                    <div className="w-1 h-1 bg-current rounded-full"></div>
+                    <div className="w-1 h-1 bg-current rounded-full"></div>
+                    <div className="w-1 h-1 bg-current rounded-full"></div>
                   </div>
-                  <div className="font-mono text-[8px] tracking-[0.3em]">SECURE_ENCRYPTION_V2.0</div>
+                  <div className="font-mono text-[7px] tracking-[0.3em]">SECURE_V2.0</div>
                 </div>
               </div>
             </div>
