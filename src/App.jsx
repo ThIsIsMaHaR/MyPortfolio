@@ -36,8 +36,10 @@ const CERTIFICATES = [
 
 const PROJECTS = [
   { title: "PAGE TURNER", description: "It is a platform where different e-book and Web Novel writers can upload and publish their work Chapter by chapter and readers can read the work of their interest.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
+
   { title: "TEXTORA", description: "It is an blogging Platform where you can wite your Blogs and Daily Updates.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
-  { title: "ZAPCHAT", description: "It is a Real Time Chat Web Application.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" }
+
+  { title: "ZAPCHAT", description: "It is a Real Time Chat Web Application.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR/ZAPCHAT", link: "https://zap-chat-a0xq.onrender.com/" }
 ];
 
 const TECH_STACK = [
