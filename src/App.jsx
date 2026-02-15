@@ -36,9 +36,7 @@ const CERTIFICATES = [
 
 const PROJECTS = [
   { title: "PAGE TURNER", description: "It is a platform where different e-book and Web Novel writers can upload and publish their work Chapter by chapter and readers can read the work of their interest.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
-
   { title: "TEXTORA", description: "It is an blogging Platform where you can wite your Blogs and Daily Updates.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
-
   { title: "ZAPCHAT", description: "It is a Real Time Chat Web Application.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR/ZAPCHAT", link: "https://zap-chat-a0xq.onrender.com/" }
 ];
 
@@ -147,7 +145,8 @@ const App = () => {
               <div className="relative w-64 h-64 group">
                 <div className={`absolute inset-0 border-2 rounded-sm translate-x-5 translate-y-5 transition-all duration-500 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}></div>
                 <div className={`${themeClasses.card} overflow-hidden relative aspect-square border-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>
-                  <img src="/aa.jpeg" alt="Abhishek Mahar" className="w-full h-full object-center opacity-80 hover:opacity-100 transition-all grayscale hover:grayscale-0" />
+                  {/* CHANGED: Added 'hover:scale-105' and removed grayscale logic */}
+                  <img src="/aa.jpeg" alt="Abhishek Mahar" className="w-full h-full object-center opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" />
                 </div>
               </div>
             </div>
@@ -243,14 +242,13 @@ const App = () => {
           </div>
         </section>
 
-        {/* 06. CONTACT MODULE - FIXED SLIM WIDTHS */}
+        {/* 06. CONTACT MODULE */}
         <section id="contact" className="py-32 text-left">
           <div className={`flex items-center gap-4 mb-20 uppercase tracking-[0.4em] text-lg md:text-xl font-mono ${isDark ? 'text-[#64ffda]' : 'text-[#0a192f]'}`}>
             <span className={`${themeClasses.heading} font-black border-b-2 ${isDark ? 'border-[#64ffda]' : 'border-[#0a192f]'}`}>06.</span> MY_CONTACT
           </div>
           
           <div className="grid lg:grid-cols-5 gap-16 items-start">
-            {/* Left Column: Social HUD (Slimmed down with max-width) */}
             <div className="lg:col-span-2 space-y-12 max-w-xs">
               <div className="relative">
                 <h3 className={`${themeClasses.heading} text-4xl font-black tracking-tighter mb-6`}>INITIATE <br/> CONNECTION.</h3>
@@ -272,7 +270,6 @@ const App = () => {
               </div>
             </div>
 
-            {/* Right Column: Message Box (Slimmed down with max-width) */}
             <div className="lg:col-span-3">
               <div className="relative max-w-md">
                 <form ref={form} onSubmit={sendEmail} className="space-y-8">
