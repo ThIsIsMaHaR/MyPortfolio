@@ -35,9 +35,23 @@ const CERTIFICATES = [
 ];
 
 const PROJECTS = [
-  { title: "PAGE TURNER", description: "It is a platform where different e-book and Web Novel writers can upload and publish their work Chapter by chapter and readers can read the work of their interest.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
-  { title: "TEXTORA", description: "It is an blogging Platform where you can wite your Blogs and Daily Updates.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR", link: "#" },
-  { title: "ZAPCHAT", description: "It is a Real Time Chat Web Application.", tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], github: "https://github.com/ThIsIsMaHaR/ZAPCHAT", link: "https://zap-chat-a0xq.onrender.com/" }
+  { title: "OneCart", 
+    description: "A full-stack ecosystem featuring a custom Admin Panel, a User Storefront, and a Shared 'Node.js' Backend. To enhance UX, I integrated an AI-driven Assistant that enables voice or text commands to navigate users through different parts of the website automatically. This project demonstrates advanced MERN architecture, secure cookie-based authentication, and the practical application of AI in web navigation.",
+    tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], 
+    github: "https://github.com/ThIsIsMaHaR/One_Cart", 
+    link: "https://e-comm-onecart.onrender.com/" },
+
+  { title: "ZAPCHAT", 
+    description: "It is a Real Time Chat Web Application.", 
+    tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], 
+    github: "https://github.com/ThIsIsMaHaR/ZAPCHAT", 
+    link: "https://zap-chat-a0xq.onrender.com/" },
+
+  { title: "AI Virtual-Assistant", 
+    description: "Still Cooking.", 
+    tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], 
+    github: "https://github.com/ThIsIsMaHaR", 
+    link: "#" }
 ];
 
 const TECH_STACK = [
