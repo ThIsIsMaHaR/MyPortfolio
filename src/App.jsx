@@ -39,13 +39,13 @@ const PROJECTS = [
     description: "A full-stack ecosystem featuring a custom Admin Panel, a User Storefront, and a Shared 'Node.js' Backend. To enhance UX, I integrated an AI-driven Assistant that enables voice or text commands to navigate users through different parts of the website automatically. This project demonstrates advanced MERN architecture, secure cookie-based authentication, and the practical application of AI in web navigation.",
     tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], 
     github: "https://github.com/ThIsIsMaHaR/One_Cart", 
-    link: "https://e-comm-onecart.onrender.com/" },
+    link: "https://one-cart-flax.vercel.app/" },
 
   { title: "ZAPCHAT", 
     description: "It is a Real Time Chat Web Application.", 
     tech: ["MONGODB", "EXPRESS", "REACT", "NODE", "TAILWIND CSS"], 
     github: "https://github.com/ThIsIsMaHaR/ZAPCHAT", 
-    link: "https://zap-chat-a0xq.onrender.com/" },
+    link: "https://zapchat-wine.vercel.app/" },
 
   { title: "Page_Turner", 
     description: "A full-stack ebook publishing platform built with the MERN stack. Features a seamless interface for authors to publish their work and readers to discover and consume digital content.", 
